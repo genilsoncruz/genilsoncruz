@@ -1,17 +1,20 @@
-let trilho = document.getElementById('trilho')
-let body = document.querySelector('body')
-let icone = document.getElementById('icone');
+document.addEventListener('DOMContentLoaded', () => {
+  const navItems = document.querySelectorAll('nav ul li');
+  const sections = document.querySelectorAll('main section');
 
-trilho.addEventListener('click', () => {
-    trilho.classList.toggle('dark')
-    body.classList.toggle('dark')
+  navItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const sectionId = item.getAttribute('data-section');
 
-    if (body.classList.contains('dark')) {
-        icone.classList.remove('bi-brightness-high-fill');
-        icone.classList.add('bi-moon-fill');
-    } else {
-        icone.classList.remove('bi-moon-fill');
-        icone.classList.add('bi-brightness-high-fill');
-    }
+      sections.forEach(section => {
+        section.classList.remove('active');
+        if (section.id === sectionId) {
+          section.classList.add('active');
+        }
+      });
+    });
+  });
 
-})
+  // Ativa a primeira seção por padrão
+  sections[0].classList.add('active');
+});
